@@ -10,4 +10,12 @@ jobs:
 
     steps:
       - name: First Step
-        run: echo "Hello world. This is my first github actions workflow."
+        run: echo "Hello world. This is my first GitHub Actions workflow."
+
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: List Files in the Repository
+        run: |
+          echo "The repository ${{ github.repository }} contains the following files:"
+          tree
