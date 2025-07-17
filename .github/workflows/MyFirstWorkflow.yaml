@@ -7,6 +7,7 @@ on:
 jobs:
   MyFirstJob:
     runs-on: ubuntu-latest
+    name: My first job
 
     steps:
       - name: First Step
@@ -24,7 +25,7 @@ jobs:
         run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
 
       - name: Get Color From Output
-        run: ${{ steps.color-generator.output.SELECTED_COLOR }}
+        run: echo "${{ steps.color-generator.output.SELECTED_COLOR }}"
   
   MySecondJob:
     runs-on: ubuntu-latest
