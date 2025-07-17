@@ -18,6 +18,13 @@ jobs:
       - name: List Files in the Repository
         run: |
           echo "The repository ${{ github.repository }} contains the following files:"
+
+      - name: Set Color
+        id: color-generator
+        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+
+      - name: Get Color From Output
+        run: ${{ steps.color-generator.output.SELECTED_COLOR }}
   
   MySecondJob:
     runs-on: ubuntu-latest
