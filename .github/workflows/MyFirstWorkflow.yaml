@@ -20,17 +20,15 @@ jobs:
           echo "The repository ${{ github.repository }} contains the following files:"
   
   MySecondJob:
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       max-parallel: 3
       matrix:
-        os_version: [ubuntu-latest]
         node_version: [22, 23, 24]
     name: My second job
-    runs-on: ${{ matrix.os_version }}
       
     steps:
     - uses: actions/setup-node@v3.6.0
       with:
         node-version: ${{ matrix.node_version }}
-         tree
