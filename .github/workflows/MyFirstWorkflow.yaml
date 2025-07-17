@@ -26,6 +26,20 @@ jobs:
 
       - name: Get Color From Output
         run: echo "${{ steps.color-generator.outputs.SELECTED_COLOR }}"
+
+  GenerateMaskedSecret:
+    runs-on: ubuntu-latest
+    name: Generate, mask, and output a secret
+    steps:
+    - name: Mask a secret
+      id: secret-masker
+      run: |
+        the_secret=$((RANDOM))
+        echo "::add-mask::$the_secret"
+        echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
+
+    - name: Use that secret output (protected by a mask)
+      run: echo "${{ steps.secret-masker.outputs.secret-number"
   
   MySecondJob:
     runs-on: ubuntu-latest
