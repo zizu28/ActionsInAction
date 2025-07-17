@@ -25,7 +25,7 @@ jobs:
         run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
 
       - name: Get Color From Output
-        run: echo "${{ steps.color-generator.output.SELECTED_COLOR }}"
+        run: echo "${{ steps.color-generator.outputs.SELECTED_COLOR }}"
   
   MySecondJob:
     runs-on: ubuntu-latest
