@@ -37,9 +37,12 @@ jobs:
         the_secret=$((RANDOM))
         echo "::add-mask::$the_secret"
         echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
+        echo "### Secret masker done :rocket:" >> "$GITHUB_STEP_SUMMARY"
 
     - name: Use that secret output (protected by a mask)
-      run: echo "${{ steps.secret-masker.outputs.secret-number }}"
+      run: |
+        echo "${{ steps.secret-masker.outputs.secret-number }}"
+        echo "### Secret masker extracted :medal_sports:" >> "$GITHUB_STEP_SUMMARY"
   
   EnvFile:
     runs-on: ubuntu-latest
