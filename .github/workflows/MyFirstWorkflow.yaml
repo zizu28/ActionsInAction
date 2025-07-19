@@ -68,3 +68,22 @@ jobs:
     - uses: actions/setup-node@v3.6.0
       with:
         node-version: ${{ matrix.node_version }}
+
+  JobSummary:
+    runs-on: ubuntu-latest
+    name: Job summary with JavaScript Action
+    steps:
+    - uses: actions/github-script@v6.1.0
+      with: 
+        script: |
+          await core.summary
+          .addHeading("Test Results")
+          .addTable([
+            [{data: File, header: true}, {data: 'Result', header: true}],
+            ['foo.js', 'Pass :ecstatic:'],
+            ['bar.js', 'Fail :sad:'],
+            ['test.js', 'Pass :medal: :ecstatic:']
+          ])
+          .addLink('View development deployment', 'github.com')
+          .write()
+
