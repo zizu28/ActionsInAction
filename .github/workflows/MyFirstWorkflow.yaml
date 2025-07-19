@@ -41,6 +41,17 @@ jobs:
     - name: Use that secret output (protected by a mask)
       run: echo "${{ steps.secret-masker.outputs.secret-number }}"
   
+  EnvFile:
+    runs-on: ubuntu-latest
+    name: Set environment variable
+    steps:
+      - name: Set the value
+        id: env-value
+        run: |
+          echo "action_state=yellow" >> "$GITHUB_ENV"
+      - name: Use environment value
+        run: echo "${{ env.action_state }}"
+      
   MySecondJob:
     runs-on: ubuntu-latest
     strategy:
